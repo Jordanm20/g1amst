@@ -2,6 +2,7 @@ import 'package:g1amst/constants/colors.dart';
 import 'package:g1amst/models/cart.dart';
 import 'package:g1amst/models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductView extends StatelessWidget {
   final Product product;
@@ -43,6 +44,22 @@ class ProductView extends StatelessWidget {
                       product.title,
                       style:
                       TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
+                    ),
+                    RatingBar.builder(
+                      initialRating: product.rating, // Debes tener este valor en tu objeto Product
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        // Puedes agregar aquí alguna lógica para manejar el cambio de calificación
+                        print(rating);
+                      },
                     ),
                     Expanded(
                         child:
@@ -89,7 +106,7 @@ class ProductView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(50),
                 child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                    "El mejor producto que tu mascota podría desear."),
               ),
               Material(
                 type: MaterialType.transparency,
